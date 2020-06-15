@@ -7,14 +7,14 @@ This application is developed with PHP and MVC framework.  Entire code architect
 
 ## Way of working
 
-It's prettry simple. Fork the repository and run it with webserver that supports PHP7.  Make sure you have rewrite modules enabled in your http_config or php.ini
+It's prettry simple. Fork the repository and run it with webserver that supports PHP7.  Make sure you have rewrite modules enabled in your httpd.conf or php.ini
 
 
 ## DEMO
 
-You can find the working demo here which is hosted in Heroku
+I have deployed this in [Heroku][heroku] platform. You can find the working link here
 
-[sudoku-tester]: https://sudoku-tester.herokuapp.com/
+[sudoku-tester](https://sudoku-tester.herokuapp.com/)
 
 There are no limitations about the implementation, also there are doors to improve in the frontend which I haven't concentrated much here.
 
