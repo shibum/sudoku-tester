@@ -1,15 +1,17 @@
 <?php
 
 class View {
-    protected $_head, $_body, $_siteTitle = SITE_TITLE, $_outputBuffer, $_layout = DEFAULT_LAYOUT;
+    protected $_head, $_body, $_siteTitle = SITE_TITLE, $_outputBuffer, $_layout = DEFAULT_LAYOUT, $_queryParam = '';
 
     public function __construct() {
 
     }
 
-    public function render($viewName) {
+    public function render($viewName, $queryParam = '') {
         $viewArray = explode('/', $viewName);
         $viewString = implode(DS, $viewArray);
+        $this->_queryParam = $queryParam;
+
         if(file_exists(ROOT . DS . 'app' . DS . 'views' . DS . $viewString . '.php')){
             include(ROOT . DS . 'app' . DS . 'views' . DS . $viewString . '.php');
             include(ROOT . DS . 'app' . DS . 'views' . DS . 'layouts' . DS . $this->_layout . '.php');
@@ -45,6 +47,10 @@ class View {
             default:
                die('You must first run the start method.');
         }
+    }
+
+    public function queryParam() {
+        return $this->_queryParam;
     }
 
     public function siteTitle() {
