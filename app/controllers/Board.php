@@ -51,6 +51,11 @@ class Board extends Controller {
         $this->view->render('board/result', $queryParams);
     }
 
+    /**
+     * 
+     * Check if all the values are filled in the sudoku matrix (board array)
+     * if not filled return false.
+     */
     private function checkFilledValue(): bool {
         foreach ($this->board as $row => $cols) {
             foreach ($cols as $col => $cellValue) {
@@ -62,6 +67,11 @@ class Board extends Controller {
         return true;
     }
 
+    /**
+     * 
+     * Loop through the values by rows and columns
+     * return true if nothing repeated in rows or columns otherwise return false.
+     */
     private function repeatedRowOrColumnValues(): bool {
         foreach ($this->board as $row => $cols) {
             $curRow = [];
@@ -83,8 +93,11 @@ class Board extends Controller {
         return true;
     }
 
-    // Checking if the number repeated within of 3x3 box.
-    // Looping and incrementing by 3 with the initial coordinates given.
+    /**
+     * 
+     * Checking if the number repeated within of 3x3 box.
+     * Looping and incrementing by 3 with the initial coordinates given.
+     */
     private function checkBoxReptition(): bool {
         $boxCoordinates = [
             [0,0], [0,1], [0,2],
