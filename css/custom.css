@@ -1,0 +1,54 @@
+.red {
+    color: red;
+}
+.cell-input {
+    width: 60px;
+    height: 60px;
+    padding-left: 0px;
+    padding-right: 0px;
+    text-align: center;
+}
+.sudkoku-box {
+    width: 600px;
+    height: 600px;
+}
+.row-input{
+    letter-spacing: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.row{
+    width: 320px;
+}
+
+.no-border {
+    border: 0;
+    box-shadow: none;
+    background-color: transparent;
+    width: 31px;
+    height: 31px;
+    text-align: center;
+}
+
+.table{
+    outline-style: solid;
+    outline-width: 2px;
+}
+.row-border{
+    border-bottom: 2px solid black;
+}
+.col-border{
+    border-right: 2px solid black;
+}
+.grid-holder{
+    margin-left: 40px;
+}
+
+.result-container{
+    width: 500px;
+}
+
+#bootstrap-overrides col {
+    padding-left: 0px;
+    padding-right: 0px;
+}
