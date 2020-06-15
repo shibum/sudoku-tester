@@ -1,4 +1,4 @@
-# sudoku tester coding challenge
+# sudoku-tester
 
 The goal of this challenge is to implement a function, that checks whether the given input is valid sudoku or not.
 
