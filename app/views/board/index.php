@@ -24,7 +24,7 @@
 <?php $this->end(); ?>
 <?php $this->start('body'); ?>
 <div class="p-3 p-md-5 m-md-3 text-center bg-light" id="bootstrap-overrides">
-    <p class="lead font-weight-normal">Fill the values from rows or from each cells.</p>
+    <p class="lead font-weight-normal">Enter the values from 1-9 in the cells or the rows. Click on the cells to enter the value. Or enter the values in the text boxes labelled as Row.</p>
     <br>
     <form class="form" name="form" action="<?=PROOT?>board/index" method="POST">
         <div class="d-inline-block">
