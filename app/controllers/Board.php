@@ -7,6 +7,11 @@ class Board extends Controller {
         parent::__construct($controller, $action);
     }
 
+    /**
+     * the place where you feed sudoku data and validates the result.
+     * param $_POST values are loaded from header POST
+     * @return renders index page if not submitted, else validates and renders the result screen 
+     */
     public function indexAction() {
         if($_POST) {
             $this->board = [
@@ -27,17 +32,17 @@ class Board extends Controller {
                 }
             }
 
-            if(!$this->checkFilledValue()) {
+            if(!$this->isFilled()) {
                 Router::redirect('board/result/notfilled');
                 return;
             }
 
-            if(!$this->repeatedRowOrColumnValues()) {
+            if(!$this->isValidRowColumn()) {
                 Router::redirect('board/result/repeatedRowOrCol');
                 return;
             }
 
-            if(!$this->checkBoxReptition()) {
+            if(!$this->isValidBox()) {
                 Router::redirect('board/result/boxrepeated');
                 return;
             }
@@ -47,16 +52,21 @@ class Board extends Controller {
         $this->view->render('board/index');        
     }
 
+    /**
+     * renders the result
+     * @param queryParams $queryParams result status
+     * @return renders result page 
+     */
     public function resultAction($queryParams) {
         $this->view->render('board/result', $queryParams);
     }
 
+    
     /**
-     * 
      * Check if all the values are filled in the sudoku matrix (board array)
-     * if not filled return false.
+     * @return true if all the values are filled in the board, else false 
      */
-    private function checkFilledValue(): bool {
+    private function isFilled(): bool {
         foreach ($this->board as $row => $cols) {
             foreach ($cols as $col => $cellValue) {
                 if($this->board[$row][$col] == 0 || $this->board[$row][$col] > 9 || $this->board[$row][$col] < 1) {
@@ -67,12 +77,12 @@ class Board extends Controller {
         return true;
     }
 
+    
     /**
-     * 
-     * Loop through the values by rows and columns
-     * return true if nothing repeated in rows or columns otherwise return false.
+     * Loop through the values by rows and columns to check if any values are repeated in a row or column
+     * @return true if numbers are not repeated in rows and columns, else false
      */
-    private function repeatedRowOrColumnValues(): bool {
+    private function isValidRowColumn(): bool {
         foreach ($this->board as $row => $cols) {
             $curRow = [];
             $curCol = [];
@@ -93,12 +103,14 @@ class Board extends Controller {
         return true;
     }
 
+
     /**
      * 
-     * Checking if the number repeated within of 3x3 box.
-     * Looping and incrementing by 3 with the initial coordinates given.
+     * Checking if the number is repeated within of 3x3 sub matrix
+     * Looping and incrementing by 3 with the initial coordinates given to check the next box.
+     * @return true if sub matrix of 3x3 are valid and no repition, else false 
      */
-    private function checkBoxReptition(): bool {
+    private function isValidBox(): bool {
         $boxCoordinates = [
             [0,0], [0,1], [0,2],
             [1,0], [1,1], [1,2],
